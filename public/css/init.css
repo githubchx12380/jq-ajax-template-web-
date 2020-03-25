@@ -1,12 +1,9 @@
-h2,h4,h3,ul,div{
+h1,h2,h4,h3,ul,div{
     margin: 0;
     padding: 0;
     font-weight: normal;
   }
-  body{
-    font-size: 13px;
-    background-color: #f6f6f6;
-  }
+  
   em,i{
     font-style: normal;
   }
@@ -23,7 +20,7 @@ h2,h4,h3,ul,div{
   }
   a:hover{
     text-decoration: none;
-    color: #777777;
+    color: #4285f4;
   }
  
   a:link {
@@ -38,4 +35,9 @@ h2,h4,h3,ul,div{
   }
   .left{
     float: left;
+  }
+
+  body{
+    font-size: 14px;
+    background-color: #f5f5f5;
   }
