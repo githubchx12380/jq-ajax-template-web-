@@ -16,44 +16,113 @@
 }
 .navbar-default{
     background-color: white;
-    h1{
-        margin-right: 60px;
-        #logo{
-            height: 52px;
+    width: 100%;
+    .container{ 
+        h1{
+            margin-right: 60px;
+            #logo{
+                height: 52px;
+            }
         }
-    }
-    .navbar-collapse{
-        .navbar-nav{
-          li{
-            a{
-                display: flex;
-                justify-content: center;
-                align-items: center;
+        .navbar-collapse{
+            .navbar-nav{
+              li{
+                a{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    img{
+                        height: 22px;
+                        width: 22px;
+                    }
+                }
+              }
+            }
+        }
+        .users{
+            padding-left: 30px;
+            display: flex;
+            justify-content: center;
+            .usersId{
+               padding: 10px 0;
                 img{
-                    height: 22px;
-                    width: 22px;
+                    height: 32px;
                 }
             }
-          }
-        }
-    }
-    .users{
-        padding-left: 30px;
-        display: flex;
-        justify-content: center;
-        .usersId{
-           padding: 10px 0;
-            img{
-                height: 32px;
+            .userbtn{
+                color: white;
+                background-color: #3ca5f6;
+                padding: 5px 10px;
+                border-radius: 10%;
+                font-size: 13px;
+                margin: 10px 0 0 10px;
             }
         }
-        .userbtn{
-            color: white;
-            background-color: #3ca5f6;
-            padding: 5px 10px;
-            border-radius: 10%;
-            font-size: 13px;
-            margin: 10px 0 0 10px;
+    }
+}
+
+.container-fuils{
+    .container{    
+        .hidden-content{
+            background-color: white;
+            height: 800px;
+            padding-right: 30px;
+        }
+        .form--label{
+            height: 800px;
+            .formdata{
+               display: flex;
+               justify-content: center;
+               .ipt{
+                 width: 100%;
+                 padding: 7px 20px;
+                 outline: none;
+                 border: 0;
+               }
+               .sub{
+                   outline: none;
+                   border: 0;
+                   background-color: #3ca5f6;
+                   padding: 0 15px;
+                   color: white;
+               }
+            }
+        }
+        .recomment{
+            margin: 20px 0;
+            padding: 20px 10px;
+            background-color: white;
+            h4{
+                position: relative;
+                padding-left: 20px;
+                span{
+                    position: absolute;
+                    left: 10px;
+                    top: 0;
+                    width: 4px;
+                    height: 100%;
+                    content: "";
+                    background: #3ca5f6;
+                    border-radius: 2px;
+                }
+            }
+            ul{
+                padding-top: 10px;
+                li{
+                    padding: 10px 10px;
+                    a{
+                        color: #666;
+                        display: -webkit-box;
+                        overflow: hidden;
+                        white-space: normal!important;
+                        text-overflow: ellipsis;
+                        word-wrap: break-word;
+                        -webkit-line-clamp: 1;
+                        -webkit-box-orient: vertical;
+                    }
+                }
+            }
         }
     }
+    
 }

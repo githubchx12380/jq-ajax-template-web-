@@ -18,38 +18,99 @@
 }
 .navbar-default {
   background-color: white;
+  width: 100%;
 }
-.navbar-default h1 {
+.navbar-default .container h1 {
   margin-right: 60px;
 }
-.navbar-default h1 #logo {
+.navbar-default .container h1 #logo {
   height: 52px;
 }
-.navbar-default .navbar-collapse .navbar-nav li a {
+.navbar-default .container .navbar-collapse .navbar-nav li a {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.navbar-default .navbar-collapse .navbar-nav li a img {
+.navbar-default .container .navbar-collapse .navbar-nav li a img {
   height: 22px;
   width: 22px;
 }
-.navbar-default .users {
+.navbar-default .container .users {
   padding-left: 30px;
   display: flex;
   justify-content: center;
 }
-.navbar-default .users .usersId {
+.navbar-default .container .users .usersId {
   padding: 10px 0;
 }
-.navbar-default .users .usersId img {
+.navbar-default .container .users .usersId img {
   height: 32px;
 }
-.navbar-default .users .userbtn {
+.navbar-default .container .users .userbtn {
   color: white;
   background-color: #3ca5f6;
   padding: 5px 10px;
   border-radius: 10%;
   font-size: 13px;
   margin: 10px 0 0 10px;
+}
+.container-fuils .container .hidden-content {
+  background-color: white;
+  height: 800px;
+  padding-right: 30px;
+}
+.container-fuils .container .form--label {
+  height: 800px;
+}
+.container-fuils .container .form--label .formdata {
+  display: flex;
+  justify-content: center;
+}
+.container-fuils .container .form--label .formdata .ipt {
+  width: 100%;
+  padding: 7px 20px;
+  outline: none;
+  border: 0;
+}
+.container-fuils .container .form--label .formdata .sub {
+  outline: none;
+  border: 0;
+  background-color: #3ca5f6;
+  padding: 0 15px;
+  color: white;
+}
+.container-fuils .container .recomment {
+  margin: 20px 0;
+  padding: 20px 10px;
+  background-color: white;
+}
+.container-fuils .container .recomment h4 {
+  position: relative;
+  padding-left: 20px;
+}
+.container-fuils .container .recomment h4 span {
+  position: absolute;
+  left: 10px;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  content: "";
+  background: #3ca5f6;
+  border-radius: 2px;
+}
+.container-fuils .container .recomment ul {
+  padding-top: 10px;
+}
+.container-fuils .container .recomment ul li {
+  padding: 10px 10px;
+}
+.container-fuils .container .recomment ul li a {
+  color: #666;
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal!important;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
