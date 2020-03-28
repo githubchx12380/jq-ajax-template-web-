@@ -1,0 +1,65 @@
+@media (max-width: 767px) {
+  body > div > div > div.col-lg-8.col-md-8.col-sm-12.col-xs-12.hidden-content > ul > li > div > a > img {
+    width: 150px;
+    height: 93px;
+  }
+  body > div > div > div.col-lg-8.col-md-8.col-sm-12.col-xs-12.hidden-content > ul > li > div > p {
+    display: none;
+  }
+}
+.hidden-content {
+  padding-right: 0 !important;
+}
+.hidden-content .title {
+  height: 49px;
+  line-height: 49px;
+  padding: 0 15px;
+  border-bottom: 1px solid #efefef;
+}
+.hidden-content .content-detail li {
+  display: flex;
+  padding: 10px 0;
+}
+.hidden-content .content-detail li .detailimg {
+  width: 240px;
+  height: 150px;
+  border-radius: 3%;
+}
+.hidden-content .content-detail li div:nth-child(2) {
+  padding: 0 15px;
+}
+.hidden-content .content-detail li div:nth-child(2) .detail-title {
+  margin-bottom: 10px;
+  font-size: 20px;
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal!important;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.hidden-content .content-detail li div:nth-child(2) p {
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal!important;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.hidden-content .content-detail li div:nth-child(2) .userimg {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+.hidden-content .content-detail li div:nth-child(2) span {
+  color: #999;
+  padding-top: 15px;
+  display: flex;
+  line-height: 45px;
+}
+.hidden-content .content-detail li div:nth-child(2) span i {
+  padding: 0 15px 0 6px;
+  color: #999;
+}

@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="../public//css/init.css">
     <link rel="stylesheet" href="../assets/css/public.css">
     <link rel="stylesheet" href="../public/css/wjsfont.css">
-    <link rel="stylesheet" href="../assets/css/detail.css">
+    <link rel="stylesheet" href="../assets/css/category.css">
     <script src="../public/js/JQuery.js"></script>
     <script src="../public/js/bootstrap.min.js"></script>
     <script src="../assets/js/public.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default default">
        <div class="container">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -98,20 +98,26 @@
     <div class="container-fuils">
         <div class="container">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 hidden-content">
-                <div class="position">当前位置:<a href="http://localhost/">首页</a><span>/</span><a href="#">电脑软件</a></div>
-                <div class="content">
-                    <h3>{{data[0].name}}</h3>
-                    <div class="date"><span><a href="#">新秀</a></span><span>{{data[0].date}}</span><span>电脑软件</span></div>
-                    <div>{{@data[0].content}}</div>
-                    <div class="file-url">
-                         <p class="file">相关文件下载地址</p>
-                         <div class="download"><a href="#">立即下载</a></div>
+              <h4 class="title">{{categorytitle[0].title}}</h4>
+             
+              <ul class="content-detail">
+                {{each data v i}}
+                <li>
+                  <div><a href="http://localhost/detail/{{v.id}}"><img src="{{v.img}}" class="detailimg" alt=""></a></div>
+                  <div>
+                    <div class="detail-title"><a href="http://localhost/detail/{{v.id}}">{{v.name}}</a></div>
+                    <p>{{v.cont}}</p>
+                    <div>
+                      <span>
+                        <a href="#"><img src="http://xinxiuz.com/wp-content/uploads/member/avatars/238a0b923820dcc5.1583691830.jpg" class="userimg" alt=""><i>新秀</i></a>
+                        <em>{{v.date}}</em>
+                      </span>
+                      <span></span>
                     </div>
-                    <div class="direction">大家可以善用本站搜索功能搜索广告关键词，看看是否有更新，网站每天都有大量福利资源更新，大家可以点击“新秀网”进入网站首页浏览。</div>
-                    <div class="star">
-                        <div class="btn"></div>
-                    </div>
-                </div>
+                  </div>
+                </li>
+               {{/each}}
+              </ul>
             </div>
             <div class="col-lg-4 col-md-4 hidden-sm hidden-xs form--label">
                 <form class="formdata">
