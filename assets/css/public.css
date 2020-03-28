@@ -26,10 +26,13 @@
 }
 .navdisplay {
   position: fixed;
-  top: 0px;
+  top: 0;
   left: 0;
   right: 0;
   display: none;
+}
+.navdisplay #bs-example-navbar-collapse-1 ul {
+  height: 54px;
 }
 .navbar-default {
   z-index: 1;

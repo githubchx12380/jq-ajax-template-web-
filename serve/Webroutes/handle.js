@@ -39,14 +39,17 @@ exports.detailData = async (req,res) => {
    let id = req.params.id
    const category = await model.category()
    const rightarticle = await model.rightArticle()
-   model.detailDatas(id,(err,data) => {
+   model.detailDatas(id,async (err,data) => {
       if(err){
          res.send(err)
       }else{
+         let id =  data[0]._id
+         const dataCategory = await model.categoryTitle(id)
          res.render(dirname + 'detail.html',{
             data,  //详情文章数据
             category,  //导航栏数据
             rightarticle, //右侧文章数据
+            dataCategory, //当前位置
          })
       }
    })

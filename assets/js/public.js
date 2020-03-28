@@ -20,13 +20,12 @@ $(function () {
         })
     })();
 
+    //导航底部动画完成
     (function () {
-     
       $('.default li a').each((index,item) => {
           if($(item).text() == $('.hidden-content h4').text()){
               $(item).addClass('borderactive').siblings().removeClass('borderactive')
               $('.navbar-nav span').css('left',$(index)[0] * $(item).outerWidth() + 'px')
-              
           }
       })
     })()
