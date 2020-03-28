@@ -53,5 +53,15 @@ exports.detailData = async (req,res) => {
          })
       }
    })
-   
+}
+
+exports.seekData = (req,res) => {
+   let str = req.body.seek
+   model.seekDatas(str,(err,data) => {
+      if(err){
+         res.send(err)
+      }else{
+         res.send(data)
+      }
+   })
 }

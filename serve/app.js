@@ -6,7 +6,8 @@ app.set('view options', {
     debug: process.env.NODE_ENV !== 'production'
 });
 app.use(require('cors')())
-
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 app.use('/assets/',express.static(__dirname + '/../assets'))
 app.use('/public/',express.static(__dirname + '/../public'))
 

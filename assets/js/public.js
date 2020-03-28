@@ -28,5 +28,33 @@ $(function () {
               $('.navbar-nav span').css('left',$(index)[0] * $(item).outerWidth() + 'px')
           }
       })
+    })();
+
+
+    //搜索防抖
+    (function () {
+        function deseek() {
+                $.ajax({
+                    type:'post',
+                    url:'http://localhost/seek',
+                    dataType:'json',
+                    data:$('.formdata').serialize(),
+                    success:function (res) {
+                        console.log(res);
+                    }
+                })
+            }
+        const hiddenFun = (fun,time) => {
+            let timeout = null;
+           return () => {
+            clearTimeout(timeout)
+            timeout = setTimeout(() => {
+                fun()
+            },time)
+           }
+        }
+
+        $('.formdata .ipt').on('input',hiddenFun(deseek,1000))
+        
     })()
 })

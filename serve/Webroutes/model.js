@@ -69,3 +69,14 @@ exports.detailDatas = (id,callback) => {
         }
     })
 }
+
+exports.seekDatas = (str,callback) => {
+    let sql = `select * from detail where name like '%${str}%'`
+    connetion.query(sql,(err,result) => {
+        if(err){
+            callback({code:302,msg:'搜索失败'})
+        }else{
+            callback(null,result)
+        }
+    })
+}

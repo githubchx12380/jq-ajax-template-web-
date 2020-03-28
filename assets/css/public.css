@@ -5,6 +5,9 @@
   body > nav.navbar.navbar-default.navdisplay {
     top: -100px;
   }
+  #bs-example-navbar-collapse-1 > ul > li > a {
+    border: 0;
+  }
 }
 @media (min-width: 768px) and (max-width: 990px) {
   #bs-example-navbar-collapse-1 > ul > li > a {
