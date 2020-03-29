@@ -28,33 +28,95 @@ $(function () {
               $('.navbar-nav span').css('left',$(index)[0] * $(item).outerWidth() + 'px')
           }
       })
+      $('.default li a').on('mouseover',function(){
+        $('.navbar-nav span').show()
+      })
+      $('.default li a').on('mouseout',function () {
+        $('.default .navbar-nav span').hide()
+      })
     })();
 
-
-    //搜索防抖
+    //模糊搜索
     (function () {
-        function deseek() {
-                $.ajax({
-                    type:'post',
-                    url:'http://localhost/seek',
-                    dataType:'json',
-                    data:$('.formdata').serialize(),
-                    success:function (res) {
-                        console.log(res);
-                    }
-                })
+        //得到焦点,如果表单有val,显示,渲染数据
+        $('.formdata .ipt').on('focus',function () {
+            if($(this).val() != ''){
+                $('.seekresult').slideDown()
             }
+        })
+        //失去焦点,隐藏
+        $('.formdata .ipt').on('blur',function () {
+                setTimeout(() => {
+                    $('.seekresult').slideUp()
+                },100)
+        })
+        //进入详情页,text清空
+        $('.seekresult').on('click','a',function () {
+            $('.formdata .ipt').val('')
+            $('.seekresult').hide()
+        })
+        //搜索防抖
+        function deseek() {
+            $.ajax({
+                type:'post',
+                url:'http://localhost/seek',
+                dataType:'json',
+                data:$('.formdata').serialize(),
+                success:function (res) {
+                    let html = template('norTemplate',{res})
+                    if(res.length){
+                        $('.seekresult').show()
+                    }
+                    $('.seekresult ul').html(html)
+                }
+            })
+        }
         const hiddenFun = (fun,time) => {
             let timeout = null;
-           return () => {
+            return () => {
             clearTimeout(timeout)
             timeout = setTimeout(() => {
                 fun()
             },time)
-           }
         }
-
-        $('.formdata .ipt').on('input',hiddenFun(deseek,1000))
+        }
+        $('.formdata .ipt').on('input',hiddenFun(deseek,400))
+    })();
+    
+    //翻页
+    (function () {
+        let iid = location.pathname.replace('/category/','')
+       
+        let num;
+        if(!parseInt(location.search.replace('?page=','')) || parseInt(location.search.replace('?page=','')) < 3){
+            num = 3
+        }else{
+            
+            num = parseInt(location.search.replace('?page=',''))
+        }
+        $.ajax({
+            type:'get',
+            url:'http://localhost/pagelength',
+            data:{iid},
+            dataType:'json',
+            success: async function  (res) {
+                const len = res.len
+                   max = Math.ceil(len / 20)
+                   initpage(max);
+            }
+        })
+      
         
+        let arr;
+        function initpage(max) {
+            if(num > max - 2){
+                num = max - 2
+            }
+             arr = [num - 2,num - 1,num,parseInt(num) + 1,parseInt(num) + 2]
+             let html = template('categorypage',{arr})
+             $('.pagination').html(html)
+        }
+        initpage()
     })()
 })
+

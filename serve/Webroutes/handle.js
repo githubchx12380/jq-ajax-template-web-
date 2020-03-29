@@ -15,12 +15,12 @@ exports.publics = async (req,res) => {
 }
 
 exports.categoryData = async (req,res) => {
+   let page = req.query.page || 1
    let id = req.params.id
    const category = await model.category()
    const rightarticle = await model.rightArticle()
    const categorytitle = await model.categoryTitle(id)
-   
-   model.categoryDatas(id,(err,data) => {
+   model.categoryDatas(page,id,(err,data) => {
       if(err){
          res.send(err)
       }else{
@@ -62,6 +62,36 @@ exports.seekData = (req,res) => {
          res.send(err)
       }else{
          res.send(data)
+      }
+   })
+}
+
+exports.seekbutData = async (req,res) => {
+   let str = req.query.seek
+   const category = await model.category()
+   const rightarticle = await model.rightArticle()
+   model.seekDatas(str,(err,data) => {
+      if(err){
+         console.log(err);
+         
+         res.send(err)
+      }else{
+         res.render(dirname + 'category.html',{
+            data,
+            category,  //导航栏数据
+            rightarticle, //右侧文章数据
+         })
+      }
+   })
+}
+exports.pagelength = (req,res) => {
+   let id = req.query.iid
+   model.categorylen(id,(err,data) => {
+      if(err){
+         res.send(err)
+      }else{
+         let len = data.length
+         res.send({code:200,len})
       }
    })
 }

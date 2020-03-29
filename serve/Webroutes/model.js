@@ -21,6 +21,7 @@ exports.category = () => {
         })
     })
 }
+
 //右侧近期文章
 exports.rightArticle = () => {
     let sql = 'select cont,name,id from detail order by date desc limit 6'
@@ -48,8 +49,8 @@ exports.categoryTitle = (id) => {
     })
 }
 
-exports.categoryDatas = (id,callback) => {
-    let sql = `select * from detail where detail._id = ${id} order by date desc limit 20`
+exports.categoryDatas = (page,id,callback) => {
+    let sql = `select * from detail where detail._id = ${id} order by date desc limit ${(page - 1) * 20},20`
     connetion.query(sql,(err,result) => {
         if(err){
             callback({code:302,msg:'请传入正确的id'})
@@ -71,10 +72,21 @@ exports.detailDatas = (id,callback) => {
 }
 
 exports.seekDatas = (str,callback) => {
-    let sql = `select * from detail where name like '%${str}%'`
+    let sql = `select * from detail where name like '%${str}%' limit 7`
     connetion.query(sql,(err,result) => {
         if(err){
             callback({code:302,msg:'搜索失败'})
+        }else{
+            callback(null,result)
+        }
+    })
+}
+
+exports.categorylen = (id,callback) => {
+    let sql = `select * from detail where detail._id = ${id}`
+    connetion.query(sql,(err,result) => {
+        if(err){
+            callback({code:302,msg:'error'})
         }else{
             callback(null,result)
         }

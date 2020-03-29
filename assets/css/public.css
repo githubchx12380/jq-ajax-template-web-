@@ -121,6 +121,25 @@
   background-color: #4285f4;
   transition: all 0.5s;
 }
+.container-fuils .container .form--label .seekresult {
+  border: 1px solid #cccccc;
+  background-color: white;
+}
+.container-fuils .container .form--label .seekresult ul li {
+  margin: 5px 20px;
+  font-weight: 700;
+  display: -webkit-box;
+  overflow: hidden;
+  white-space: normal!important;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.container-fuils .container .form--label .seekresult .derection {
+  background-color: #fafafa;
+  height: 25px;
+}
 .container-fuils .container .recomment {
   margin: 20px 0;
   padding: 20px 10px;
@@ -161,4 +180,7 @@
 }
 .borderactive {
   border-bottom: 2px solid #1b54bc;
+}
+.seekdisplay {
+  display: block;
 }

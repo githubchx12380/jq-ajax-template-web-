@@ -63,3 +63,8 @@
   padding: 0 15px 0 6px;
   color: #999;
 }
+.hidden-content .navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

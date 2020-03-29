@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="../public//css/init.css">
     <link rel="stylesheet" href="../assets/css/public.css">
     <link rel="stylesheet" href="../public/css/wjsfont.css">
-    <link rel="stylesheet" href="../assets/css/category.css">
+    <link rel="stylesheet" href="../assets/css/categoty.css">
+    <script src="../public/js/template-web.js"></script>
     <script src="../public/js/JQuery.js"></script>
     <script src="../public/js/bootstrap.min.js"></script>
-    <script src="../assets/js/public.js"></script>
+    
+    
 </head>
 <body>
     <nav class="navbar navbar-default default">
@@ -98,18 +100,21 @@
     <div class="container-fuils">
         <div class="container">
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 hidden-content">
+              {{if categorytitle}}
               <h4 class="title">{{categorytitle[0].title}}</h4>
-             
+              {{else}}
+              <h4 class="title">搜索结果</h4>
+              {{/if}}
               <ul class="content-detail">
                 {{each data v i}}
                 <li>
-                  <div><a href="http://localhost/detail/{{v.id}}"><img src="{{v.img}}" class="detailimg" alt=""></a></div>
+                  <div><a href="http://localhost/detail/{{v.id}}" target="_blank"><img src="{{v.img}}" class="detailimg" alt=""></a></div>
                   <div>
-                    <div class="detail-title"><a href="http://localhost/detail/{{v.id}}">{{v.name}}</a></div>
+                    <div class="detail-title"><a href="http://localhost/detail/{{v.id}}" target="_blank">{{v.name}}</a></div>
                     <p>{{v.cont}}</p>
                     <div>
                       <span>
-                        <a href="#"><img src="http://xinxiuz.com/wp-content/uploads/member/avatars/238a0b923820dcc5.1583691830.jpg" class="userimg" alt=""><i>新秀</i></a>
+                        <!-- <a href="#"><img src="http://xinxiuz.com/wp-content/uploads/member/avatars/238a0b923820dcc5.1583691830.jpg" class="userimg" alt=""><i>新秀</i></a> -->
                         <em>{{v.date}}</em>
                       </span>
                       <span></span>
@@ -118,17 +123,32 @@
                 </li>
                {{/each}}
               </ul>
+              <nav aria-label="Page navigation" class="navigation">
+                <div style="display: none;" class="hiddenDiv"></div>
+                <ul class="pagination">
+                
+
+
+
+                </ul>
+              </nav>
             </div>
             <div class="col-lg-4 col-md-4 hidden-sm hidden-xs form--label">
-                <form class="formdata">
+                <form class="formdata" method="GET" action="/seek">
                     <input type="text" name="seek"  placeholder="输入关键词搜索.." class="ipt" autocomplete='off'>
                     <input type="submit" class="sub icon-search"value="">
                 </form>
+                <div class="seekresult" style="display:none">
+                    <ul>
+                      
+                    </ul>
+                    <div class="derection"></div>
+                </div>
                 <div class="recomment">
                     <h4><span></span>近期文章</h4>
                     <ul>
                       {{each rightarticle v i}}
-                        <li><a href="http://localhost/detail/{{v.id}}">{{v.name}}</a></li>
+                        <li><a href="http://localhost/detail/{{v.id}}" target="_blank">{{v.name}}</a></li>
                       {{/each}}
                     </ul>
                 </div>
@@ -147,5 +167,28 @@
             </div>
         </div>
     </div>   
+    
 </body>
+
+<script type="text/template" id="norTemplate">
+   <% for(let i = 0; i < res.length;i++){ %>
+      <li><a href="http://localhost/detail/<%=res[i].id%>" target="_blank"><%=res[i].name%></a></li>
+   <% } %>
+ </script>
+ <script type="text/template" id="categorypage">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <% for(let i = 0; i < arr.length; i++){ %>
+      <li><a href="?page=<%=arr[i]%>"><%=arr[i]%></a></li>
+    <%}%>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+</script>
+ <script src="../assets/js/public.js"></script>
 </html>
