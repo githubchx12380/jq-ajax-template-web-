@@ -105,8 +105,6 @@ $(function () {
                    initpage(max);
             }
         })
-      
-        
         let arr;
         function initpage(max) {
             if(num > max - 2){
@@ -117,6 +115,22 @@ $(function () {
              $('.pagination').html(html)
         }
         initpage()
+    })();
+
+
+    //获取用户数据
+    (function () {
+        if(localStorage.getItem('newtoken')){
+            $.ajax({
+                type:'get',
+                url:'http://localhost/web/user/info',
+                dataType:'json',
+                success:function (res) {
+                    let html = template('userinfo',res)
+                    $('.userinfo').html(html)
+                }
+            })
+        }
     })()
 })
 

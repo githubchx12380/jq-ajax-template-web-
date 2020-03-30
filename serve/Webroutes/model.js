@@ -1,4 +1,7 @@
 const mysql = require('mysql')
+const bcrypt = require('bcrypt')
+const salt = bcrypt.genSaltSync(10)
+const jwt = require('jsonwebtoken')
 const connetion = mysql.createConnection({
     host:"127.0.0.1",
     user:'root',
@@ -89,6 +92,89 @@ exports.categorylen = (id,callback) => {
             callback({code:302,msg:'error'})
         }else{
             callback(null,result)
+        }
+    })
+}
+
+exports.userlogins = (req,obj,callback) => {
+    let {username,password} = obj
+   
+    let sql = `select * from webuser where username='${username}'`
+    connetion.query(sql,(err,result) => {
+        if(err){
+            callback(err)
+            return
+        }
+        if(!result.length){
+            callback({code:302,msg:'账号不存在'})
+            return
+        }
+        const psd = bcrypt.compareSync(password,result[0].password)
+        if(!psd){
+            callback({code:302,msg:'密码错误'})
+            return
+        }
+        const token = jwt.sign({id:result[0].id},req.app.get('selectToken'))
+        let message = {
+            code:200,
+            msg:'登录成功',
+            token:token
+        }
+        callback(message)
+    })
+}
+
+exports.usersigns = (obj,callback) => {
+    let username = obj.username
+    let sql = `select * from webuser where username='${username}'`
+    connetion.query(sql,function (err,result) {
+        if(result.length == 0){
+            callback({code:200,msg:'账号未被注册'})
+        }else{
+            callback({code:302,msg:'账户已存在'})
+        }
+    })
+}
+
+exports.usersignins = (obj,callback) => {
+    let sql = `insert into webuser set ?`
+    var hash = bcrypt.hashSync(obj.password,salt);
+    obj = {
+        username:obj.username,
+        password:hash,
+        email:obj.email
+    }
+    connetion.query(sql,obj,(err,result) => {
+        if(err){
+            callback({code:302,msg:'注册失败'})
+        }else{
+            callback(null,result)
+        }
+    })
+}
+
+exports.autoId = (id) => {
+    let sql = `select * from webuser where id=${id}`
+    return new Promise((resolve,reject) => {
+        connetion.query(sql,(err,result) => {
+            if(err){
+               reject({msg:'服务器内部错误'})
+            }else{
+               resolve(result)
+            }
+        })
+    })
+}
+
+
+exports.userinfos = (req,token,callback) =>{
+    let id = jwt.verify(token,req.app.get('selectToken')).id
+    let sql = `select * from webuser where id=${id}`
+    connetion.query(sql,(err,result) => {
+        if(err){
+            callback({code:402,msg:'用户信息获取失败'})
+        }else{
+            callback(null,{code:200,data:result})
         }
     })
 }

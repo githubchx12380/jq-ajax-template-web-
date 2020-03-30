@@ -1,12 +1,14 @@
 const express = require('express')
 
 const app = express()
+
 app.engine('html', require('express-art-template'));
 app.set('view options', {
     debug: process.env.NODE_ENV !== 'production'
 });
 app.use(require('cors')())
 app.use(express.json())
+app.set('selectToken','asdasdiasdji')
 app.use(express.urlencoded({ extended: false }))
 app.use('/assets/',express.static(__dirname + '/../assets'))
 app.use('/public/',express.static(__dirname + '/../public'))

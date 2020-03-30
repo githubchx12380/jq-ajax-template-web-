@@ -40,12 +40,11 @@
                 <span></span>
               </ul> 
               <div class="users hidden-sm">
-                <div>
-                    <a href="#" class="usersId ">
-                        <img src="../public/image/ico1.png" alt="">
-                        <span>10001</span>
-                        <em class="icon-user"></em>
-                    </a>
+                <div class="userinfo">
+                  <div class="loginsign">
+                    <span><a href="http://localhost/web/login">登录</a></span>
+                    <span><a href="http://localhost/web/sign">注册</a></span>
+                  </div>
                 </div>
                 <div>
                     <a href="#" class="userbtn" >
@@ -80,12 +79,8 @@
                <span></span>
              </ul> 
              <div class="users hidden-sm">
-               <div>
-                   <a href="#" class="usersId ">
-                       <img src="../public/image/ico1.png" alt="">
-                       <span>10001</span>
-                       <em class="icon-user"></em>
-                   </a>
+               <div class="userinfo">
+                
                </div>
                <div>
                    <a href="#" class="userbtn" >
@@ -169,12 +164,13 @@
     </div>   
     
 </body>
-
+<!-- 模糊搜索 -->
 <script type="text/template" id="norTemplate">
    <% for(let i = 0; i < res.length;i++){ %>
       <li><a href="http://localhost/detail/<%=res[i].id%>" target="_blank"><%=res[i].name%></a></li>
    <% } %>
  </script>
+ <!-- 分页数据 -->
  <script type="text/template" id="categorypage">
     <li>
       <a href="#" aria-label="Previous">
@@ -189,6 +185,14 @@
         <span aria-hidden="true">&raquo;</span>
       </a>
     </li>
+</script>
+<!-- 用户头像姓名 -->
+<script type="text/template" id="userinfo">
+      <a href="http://localhost/usermsg/<%=data[0].id%>" class="usersId ">
+        <img src="<%=data[0].img%>" alt="">
+        <span><%=data[0].username%></span>
+        <em class="icon-user"></em>
+      </a>
 </script>
  <script src="../assets/js/public.js"></script>
 </html>

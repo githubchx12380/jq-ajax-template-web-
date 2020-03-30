@@ -95,3 +95,64 @@ exports.pagelength = (req,res) => {
       }
    })
 }
+
+exports.logins = async (req,res) => {
+   const category = await model.category()
+   res.render(dirname + 'login.html',{
+      category
+   })
+  
+}
+exports.signs = async (req,res) => {
+   const category = await model.category()
+   
+   res.render(dirname + 'sign.html',{
+      category
+   })
+} 
+exports.userlogin = (req,res) => {
+  let obj = req.body
+  model.userlogins(req,obj,(err,data) => {
+      if(err){
+         res.send(err)
+      }else{
+         res.send(data)
+      }
+  })
+}
+exports.usersign = (req,res) => {
+   let obj = req.body
+   model.usersigns(obj,(err,data) => {
+      if(err){
+         res.send(err)
+      }else{
+         res.send(data)
+      }
+   })
+}
+exports.usersignin = (req,res) => {
+   let obj = req.body
+   model.usersignins(obj, (err,data) => {
+         if(err){
+            res.send(err)
+         }else{
+            if(req.url == '/usersignin'){
+               res.writeHead(302,{
+                  'Location': 'http://localhost/category/1'
+              })
+              res.end('ok')
+            }
+         }
+   })
+}
+
+exports.userinfo = (req,res) => {
+   let token = String(req.headers.authorization || '').split(' ').pop()
+      model.userinfos(req,token,(err,data) => {
+         if(err){
+            res.send(err)
+         }else{
+            res.send(data)
+         }
+      })
+}

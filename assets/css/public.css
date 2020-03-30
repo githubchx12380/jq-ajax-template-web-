@@ -75,6 +75,18 @@
   display: flex;
   justify-content: center;
 }
+.navbar-default .container .users .loginsign {
+  display: flex;
+  padding-top: 13px;
+}
+.navbar-default .container .users .loginsign a {
+  color: #555;
+  padding: 0 5px;
+  font-size: 16px;
+}
+.navbar-default .container .users .loginsign a:hover {
+  color: #4285f4;
+}
 .navbar-default .container .users .usersId {
   padding: 10px 0;
 }
