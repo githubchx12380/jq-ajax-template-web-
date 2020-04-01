@@ -72,8 +72,6 @@ exports.seekbutData = async (req,res) => {
    const rightarticle = await model.rightArticle()
    model.seekDatas(str,(err,data) => {
       if(err){
-         console.log(err);
-         
          res.send(err)
       }else{
          res.render(dirname + 'category.html',{
@@ -101,7 +99,6 @@ exports.logins = async (req,res) => {
    res.render(dirname + 'login.html',{
       category
    })
-  
 }
 exports.signs = async (req,res) => {
    const category = await model.category()
@@ -122,7 +119,7 @@ exports.userlogin = (req,res) => {
 }
 exports.usersign = (req,res) => {
    let obj = req.body
-   model.usersigns(obj,(err,data) => {
+   model.usersigns(req,obj,(err,data) => {
       if(err){
          res.send(err)
       }else{
@@ -132,18 +129,6 @@ exports.usersign = (req,res) => {
 }
 exports.usersignin = (req,res) => {
    let obj = req.body
-   model.usersignins(obj, (err,data) => {
-         if(err){
-            res.send(err)
-         }else{
-            if(req.url == '/usersignin'){
-               res.writeHead(302,{
-                  'Location': 'http://localhost/category/1'
-              })
-              res.end('ok')
-            }
-         }
-   })
 }
 
 exports.userinfo = (req,res) => {
@@ -155,4 +140,43 @@ exports.userinfo = (req,res) => {
             res.send(data)
          }
       })
+}
+
+exports.userops = async (req,res) => {
+   const category = await model.category()
+   res.render(dirname + 'userset.html',{
+      category
+   })
+}
+
+
+exports.userupdate = async (req,res) => {
+   const obj = await model.uploadfile(req)
+   model.userupdatas(obj,(err,data) => {
+      if(err){
+         res.send(err)
+      }else{
+         res.send(data)
+      }
+   })
+} 
+
+
+exports.newpassword = async (req,res) => {
+   
+   const obj = await model.uploadfile(req)
+   
+   model.userlogins(req,obj,(objects) => {
+         if(objects.code === 200){
+             model.newpasswords(obj,(err,data) => {
+               if(err){
+                  res.send(err)
+               }else{
+                  res.send(data)
+               }
+            })
+         }else{
+            res.send(objects)
+         }
+   })
 }

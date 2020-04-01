@@ -2,6 +2,7 @@
     #bs-example-navbar-collapse-1 > ul > span{height: 0;}
     body > nav.navbar.navbar-default.navdisplay{top: -100px;}
     #bs-example-navbar-collapse-1 > ul > li > a{border: 0;}
+    #bs-example-navbar-collapse-1 > div > div.userhover > div.downloads{display: none !important;}
 }
 @media (min-width: 768px) and (max-width: 990px) {
     #bs-example-navbar-collapse-1 > ul > li > a{padding: 15px 5px;}
@@ -69,6 +70,7 @@
             }
         }
         .users{
+            position: relative;
             padding-left: 30px;
             display: flex;
             justify-content: center;
@@ -85,10 +87,50 @@
                 }
             }
             .usersId{
-               padding: 10px 0;
+                padding-top: 12px;
+                position: relative;
+                color: #aaa;
                 img{
                     height: 32px;
                 }
+                em{
+                   position: absolute; 
+                   top: 50%;
+                   right: -15px; 
+                }
+                
+            }
+            .uploadimg{
+                height: 32px;
+                width: 32px;
+                border-radius: 50%;
+            }
+            .downloads{
+                display: none;
+                left: 50%;
+                margin-left: -55px;
+                top: 48px;
+                position: absolute;
+                background-color: white;
+                box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+                div{
+                    padding: 10px 0px;
+                    a{
+                        color: #aaa;
+                    }
+                    div{
+                        padding: 10px 30px;
+                    }
+                    div:hover{
+                        width: 100%;
+                        background-color: #4285f4;
+                        transition: all 0.5s;
+                        a{
+                            color: white;
+                        }
+                    }
+                }
+               
             }
             .userbtn{
                 color: white;
@@ -96,7 +138,7 @@
                 padding: 5px 10px;
                 border-radius: 10%;
                 font-size: 13px;
-                margin: 10px 0 0 10px;
+                margin: 10px 0 0 18px;
             }
             .userbtn:hover{
                 background-color: #4285f4;

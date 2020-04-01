@@ -17,5 +17,9 @@ module.exports = app => {
           .post('/userlogin',handle.userlogin) //登录效验
           .post('/usersign',handle.usersign) //验证用户名唯一
           .post('/usersignin',handle.usersignin) //用户信息注册
-          .get('/web/user/info',handle.userinfo) //主页面获取用户数据
+          .get('/userset',handle.userops)  //渲染基本资料页面
+          .get('/web/user/info',middenauto.tokennews,handle.userinfo) //主页面获取用户数据
+          .post('/userupdate',middenauto.tokennews,handle.userupdate)  //修改用户基本信息
+          .post('/new/psd',middenauto.tokennews,handle.newpassword)   //修改用户密码
+        
 }

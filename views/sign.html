@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="../public//css/init.css">
     <link rel="stylesheet" href="../assets/css/public.css">
     <link rel="stylesheet" href="../public/css/wjsfont.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
     <script src="../public/js/JQuery.js"></script>
     <script src="../public/js/bootstrap.min.js"></script>
-    <script src="../assets/js/login.js"></script>
+    <script src="../assets/js/sign.js"></script>
+    
     
     
 </head>
@@ -39,12 +41,11 @@
                 <span></span>
               </ul> 
               <div class="users hidden-sm">
-                <div>
-                    <a href="#" class="usersId ">
-                        <img src="../public/image/ico1.png" alt="">
-                        <span>10001</span>
-                        <em class="icon-user"></em>
-                    </a>
+                <div class="userinfo">
+                  <div class="loginsign">
+                    <span><a href="http://localhost/web/login">登录</a></span>
+                    <span><a href="http://localhost/web/sign">注册</a></span>
+                  </div>
                 </div>
                 <div>
                     <a href="#" class="userbtn" >
@@ -56,52 +57,21 @@
           </div>
        </div>
     </nav>
-    <div class="box">
+    <div class="box" style="height: 400px;">
         <div class="hint"></div>
         <div class="logintitle">
-          <span>登录</span>
-          <span><em>还没有账号?</em><a href="#">立即注册</a></span>
+          <span>注册</span>
         </div>
-        <form method="POST" action="/usersignin" id="form">
-          <div class="zh"><img src="../public/image/user.svg" alt=""><input type="text" name="username" class="username" placeholder="请输入用户名/电子邮箱" autocomplete="off"></div>
+        <form id="form">
+          <div class="zh"><img src="../public/image/user.svg" alt=""><input type="text" name="username" class="username" placeholder="请输入用户名" autocomplete="off"></div>
           <div><img src="../public/image/user.svg" alt=""><input type="password" name="password" class="password" placeholder="请输入登录密码"></div>
           <div><img src="../public/image/user.svg" alt=""><input type="text" name="email" class="email" placeholder="请输入邮箱" autocomplete="off"></div>
-          <input type="button" value="登录" class="ipt">
+          <input type="submit" value="登录" class="ipt">
         </form>
         <div class="wj"><a href="#">忘记密码</a></div>
     </div>
     <script>
-       let ePattern = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-        $(function () {
-            $('.ipt').on('click',function (e) {
-              if(!ePattern.test($('.email').val())){
-                  e.preventDefault()
-                  $('.hint').show().text('邮箱格式错误请重新输入')
-                  setTimeout(() => {
-                      $('.hint').hide()
-                  },3000)
-              }
-                let username = $('.username').val()
-               $.ajax({
-                   type:'post',
-                   url:'http://localhost/usersign',
-                   data:{username},
-                   dataType:'json',
-                   success:function(res) {
-                        if(res.code == 302){
-                            $('.hint').show().text(res.msg)
-                            setTimeout(() => {
-                                $('.hint').hide()
-                            },3000)
-                            return false
-                        }else{
-                          console.log(res);
-                          $('#form').submit()
-                        }
-                   } 
-               })
-            })
-        })
+       
     </script>
 </body>
 

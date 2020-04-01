@@ -40,12 +40,11 @@
                 <span></span>
               </ul> 
               <div class="users hidden-sm">
-                <div>
-                    <a href="#" class="usersId ">
-                        <img src="../public/image/ico1.png" alt="">
-                        <span>10001</span>
-                        <em class="icon-user"></em>
-                    </a>
+                <div class="userinfo">
+                  <div class="loginsign">
+                    <span><a href="http://localhost/web/login">登录</a></span>
+                    <span><a href="http://localhost/web/sign">注册</a></span>
+                  </div>
                 </div>
                 <div>
                     <a href="#" class="userbtn" >
@@ -61,9 +60,9 @@
         <div class="hint"></div>
         <div class="logintitle">
           <span>登录</span>
-          <span><em>还没有账号?</em><a href="#">立即注册</a></span>
+          <span><em>还没有账号?</em><a href="http://localhost/web/sign">立即注册</a></span>
         </div>
-        <form method="POST" action="/userlogin">
+        <form>
           <div class="zh"><img src="../public/image/user.svg" alt=""><input type="text" name="username" class="username" placeholder="请输入用户名/电子邮箱" autocomplete="off"></div>
           <div><img src="../public/image/user.svg" alt=""><input type="password" name="password" class="password" placeholder="请输入登录密码"></div>
           <input type="submit" value="登录" class="ipt">

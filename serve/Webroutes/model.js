@@ -2,6 +2,13 @@ const mysql = require('mysql')
 const bcrypt = require('bcrypt')
 const salt = bcrypt.genSaltSync(10)
 const jwt = require('jsonwebtoken')
+
+const formidable = require('formidable')
+const form=new formidable.IncomingForm();
+form.keepExtensions = true
+const path = require('path')
+
+
 const connetion = mysql.createConnection({
     host:"127.0.0.1",
     user:'root',
@@ -98,13 +105,13 @@ exports.categorylen = (id,callback) => {
 
 exports.userlogins = (req,obj,callback) => {
     let {username,password} = obj
-   
     let sql = `select * from webuser where username='${username}'`
     connetion.query(sql,(err,result) => {
         if(err){
             callback(err)
             return
         }
+        
         if(!result.length){
             callback({code:302,msg:'账号不存在'})
             return
@@ -124,35 +131,40 @@ exports.userlogins = (req,obj,callback) => {
     })
 }
 
-exports.usersigns = (obj,callback) => {
+//判断username是否注册,如果没注册调用userinsert函数,增加数据
+exports.usersigns = (req,obj,callback) => {
     let username = obj.username
     let sql = `select * from webuser where username='${username}'`
-    connetion.query(sql,function (err,result) {
+    connetion.query(sql,async function (err,result) {
         if(result.length == 0){
-            callback({code:200,msg:'账号未被注册'})
+             const jwttoken = await userinsert(req,obj)
+            callback({code:200,mes:'注册成功',token:jwttoken})
         }else{
-            callback({code:302,msg:'账户已存在'})
+            callback({code:302,msg:'注册失败,账号已经存在'})
         }
     })
 }
-
-exports.usersignins = (obj,callback) => {
-    let sql = `insert into webuser set ?`
-    var hash = bcrypt.hashSync(obj.password,salt);
-    obj = {
-        username:obj.username,
-        password:hash,
-        email:obj.email
-    }
-    connetion.query(sql,obj,(err,result) => {
-        if(err){
-            callback({code:302,msg:'注册失败'})
-        }else{
-            callback(null,result)
+//
+function userinsert(req,obj) {
+    return new Promise((resolve,reject) => {
+        let sql = `insert into webuser set ?`
+        var hash = bcrypt.hashSync(obj.password,salt);
+        obj = {
+            username:obj.username,
+            password:hash,
+            email:obj.email
         }
+        connetion.query(sql,obj,(err,result) => {
+            if(err){
+                reject(err)
+            }
+            var objtoken =  jwt.sign({id:result.insertId},req.app.get('selectToken')) 
+            resolve(objtoken)
+        })
     })
 }
 
+//token中间件查询id是否存在使用
 exports.autoId = (id) => {
     let sql = `select * from webuser where id=${id}`
     return new Promise((resolve,reject) => {
@@ -166,7 +178,7 @@ exports.autoId = (id) => {
     })
 }
 
-
+//ajax渲染用户信息
 exports.userinfos = (req,token,callback) =>{
     let id = jwt.verify(token,req.app.get('selectToken')).id
     let sql = `select * from webuser where id=${id}`
@@ -175,6 +187,52 @@ exports.userinfos = (req,token,callback) =>{
             callback({code:402,msg:'用户信息获取失败'})
         }else{
             callback(null,{code:200,data:result})
+        }
+    })
+}
+
+//文件处理
+exports.uploadfile =  (req) => {
+    return new Promise((resolve,reject) => {
+        form.uploadDir = "../serve/upload";
+        form.parse(req,(err, fields, files) => {
+        let obj = fields
+        if(files.img != null){
+            obj.img = path.basename(files.img.path)
+            resolve(obj)
+            return
+        }
+        resolve(obj)
+        });
+    })
+}
+
+//修改基本资料
+exports.userupdatas = (obj,callback) => {
+    let sql = `update webuser set ? where id = ${obj.id}`
+    connetion.query(sql,obj,(err,result) => {
+        if(err){
+            callback({code:302,msg:'上传失败'})
+        }else{
+            callback(null,{code:200,meg:'上传成功'})
+        }
+    })
+}
+
+
+//修改密码
+exports.newpasswords = (obj,callback) => {
+    var hash = bcrypt.hashSync(obj.newpassword,salt);
+    obj = {
+        id:obj.id,
+        password:hash
+    }
+    let sql = `update webuser set ? where id = ${obj.id}`
+    connetion.query(sql,obj,(err,result) => {
+        if(err){
+            callback({code:302,msg:'修改失败,请输入正确的密码'})
+        }else{
+            callback({code:200,msg:'修改成功'})
         }
     })
 }

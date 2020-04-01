@@ -10,10 +10,13 @@
     <link rel="stylesheet" href="../assets/css/public.css">
     <link rel="stylesheet" href="../public/css/wjsfont.css">
     <link rel="stylesheet" href="../assets/css/detail.css">
+    
     <script src="../public/js/JQuery.js"></script>
     <script src="../public/js/template-web.js"></script>
+    <script src="../assets/js/public.js"></script>
     <script src="../public/js/bootstrap.min.js"></script>
     <script src="../assets/js/detail.js"></script>
+    
 </head>
 <body>
     <nav class="navbar navbar-default default">
@@ -38,19 +41,27 @@
                 {{/each}}
                 <span></span>
               </ul> 
-              <div class="users hidden-sm">
-                <div>
-                    <a href="#" class="usersId ">
-                        <img src="../public/image/ico1.png" alt="">
-                        <span>10001</span>
-                        <em class="icon-user"></em>
-                    </a>
+              <div class="users hidden-sm" >
+                <div class="userhover">
+                  <div class="userinfo">
+                    <div class="loginsign">
+                      <span><a href="http://localhost/web/login" class="loginshide" style="color: white;">登录</a></span>
+                      <span><a href="http://localhost/web/sign" class="signshide" style="color: white;">注册</a></span>
+                    </div>
+                  </div>
+                  <div class="downloads">
+                    <div>
+                        <div class="usermain"><a href="">个人中心</a></div>
+                        <div class="userset"><a href="">账号设置</a></div>
+                        <div class="unlogin"><a href="">退出登录</a></div>
+                    </div>
+                 </div>
                 </div>
                 <div>
-                    <a href="#" class="userbtn" >
-                        投稿
-                    </a>
-                </div>
+                  <a href="#" class="userbtn" >
+                      投稿
+                  </a>
+              </div>
               </div>
             </div>
           </div>
@@ -79,13 +90,12 @@
                <span></span>
              </ul> 
              <div class="users hidden-sm">
-               <div>
-                   <a href="#" class="usersId ">
-                       <img src="../public/image/ico1.png" alt="">
-                       <span>10001</span>
-                       <em class="icon-user"></em>
-                   </a>
-               </div>
+              <div class="userinfo">
+                <div class="loginsign">
+                  <span><a href="http://localhost/web/login">登录</a></span>
+                  <span><a href="http://localhost/web/sign">注册</a></span>
+                </div>
+              </div>
                <div>
                    <a href="#" class="userbtn" >
                        投稿
@@ -150,11 +160,23 @@
             </div>
         </div>
     </div>   
+    <!-- 模糊搜索 -->
     <script type="text/template" id="norTemplate">
       <% for(let i = 0; i < res.length;i++){ %>
          <li><a href="http://localhost/detail/<%=res[i].id%>" target="_blank"><%=res[i].name%></a></li>
       <% } %>
     </script>
-    <script src="../assets/js/public.js"></script>
+    <!-- 用户导航信息 -->
+    <script type="text/template" id="userinfo">
+      <a href="http://localhost/usermain/<%=data[0].id%>" class="usersId ">
+        <% if(data[0].img){%>
+          <img src="<%=data[0].img%>" alt="">
+        <%} else{%>
+          <img src="../public/image/ico1.png" alt="">
+        <%}%>
+        <span><%=data[0].username%></span>
+        <em class="icon-ctrl"></em>
+      </a>
+    </script> 
 </body>
 </html>

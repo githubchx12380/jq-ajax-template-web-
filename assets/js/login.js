@@ -30,7 +30,6 @@ $(function () {
             success:function(res) {
                 if(res.code == 200){
                 localStorage.setItem('newtoken',res.token)
-                
                 window.open('http://localhost/category/1','_self')
                 }else{
                 $('.hint').show().text(res.msg)

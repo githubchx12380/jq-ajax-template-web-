@@ -1,5 +1,4 @@
 $(function () {
-   
     (function () {
         //nav开局调用获取宽度
         $('.navbar-nav span').css('width',$('.navbar-nav li')[0].offsetWidth)
@@ -83,41 +82,38 @@ $(function () {
         $('.formdata .ipt').on('input',hiddenFun(deseek,400))
     })();
     
-    //翻页
+    if(location.pathname.indexOf('seek') != -1){
+        $('.pagination').hide()
+    }
+    if(!localStorage.getItem('newtoken')){
+        $('.loginshide').css('color','#666')
+        $('.signshide').css('color','#666')
+    }
+    //下拉菜单
     (function () {
-        let iid = location.pathname.replace('/category/','')
-       
-        let num;
-        if(!parseInt(location.search.replace('?page=','')) || parseInt(location.search.replace('?page=','')) < 3){
-            num = 3
-        }else{
-            
-            num = parseInt(location.search.replace('?page=',''))
-        }
-        $.ajax({
-            type:'get',
-            url:'http://localhost/pagelength',
-            data:{iid},
-            dataType:'json',
-            success: async function  (res) {
-                const len = res.len
-                   max = Math.ceil(len / 20)
-                   initpage(max);
+        $('.users').on('mouseover','.usersId ',function () {
+            $(this).find('em').css({
+                transform:'rotate(180deg)',
+                top:'35%',
+                transition:'all 0.5s',
+            })
+           
+        });
+        $('.users').on('mouseout','.usersId ',function () {
+            $(this).find('em').css({
+                transform:'rotate(0deg)',
+                top:'50%',
+                transition:'all 0.5s',
+            })
+        });
+        $('.userhover').hover(function () {
+            if($(this).find('.loginshide').text() != '登录'){
+                $('.downloads').stop().slideDown(200)
             }
-        })
-        let arr;
-        function initpage(max) {
-            if(num > max - 2){
-                num = max - 2
-            }
-             arr = [num - 2,num - 1,num,parseInt(num) + 1,parseInt(num) + 2]
-             let html = template('categorypage',{arr})
-             $('.pagination').html(html)
-        }
-        initpage()
+        },function () {
+            $('.downloads').stop().slideUp(200)
+        });
     })();
-
-
     //获取用户数据
     (function () {
         if(localStorage.getItem('newtoken')){
@@ -126,11 +122,19 @@ $(function () {
                 url:'http://localhost/web/user/info',
                 dataType:'json',
                 success:function (res) {
-                    let html = template('userinfo',res)
-                    $('.userinfo').html(html)
+                    $('.usermain a').attr('href',`http://localhost/usermain`)
+                    $('.userset a').attr('href',`http://localhost/userset`)
+                    $('.userinfo').html(template('userinfo',res))
                 }
             })
         }
+        $('.unlogin').on('click','a',function () {
+            localStorage.removeItem('newtoken')
+            window.open('http://localhost/category/1','_self')
+        })
     })()
-})
+    });
+  
+   
+
 

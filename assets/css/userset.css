@@ -1,0 +1,114 @@
+.container-box .container {
+  padding-top: 20px;
+}
+.container-box .container .box .fileload {
+  padding: 0;
+  height: 460px;
+  background-color: white;
+}
+.container-box .container .box .fileload .file-img {
+  background-color: #f7f8f9;
+  padding: 50px 15px;
+}
+.container-box .container .box .fileload .file-img .image {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container-box .container .box .fileload .file-img .image .fileDiv {
+  position: absolute;
+  text-align: center;
+  line-height: 90px;
+  font-size: 40px;
+  height: 100px;
+  border-radius: 50%;
+  border: 5px solid #e8e9ea;
+  width: 100px;
+}
+.container-box .container .box .fileload .file-img .image .fileDiv em {
+  position: absolute;
+  left: 30%;
+  top: 25%;
+  display: none;
+}
+.container-box .container .box .fileload .file-img .image .fileDiv .filename {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.container-box .container .box .fileload .file-img .image .fileDiv:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+.container-box .container .box .fileload .file-img .image .fileDiv:hover em {
+  display: block;
+}
+.container-box .container .box .fileload .file-img .image img {
+  height: 100px;
+  border-radius: 50%;
+  border: 5px solid #e8e9ea;
+  width: 100px;
+}
+.container-box .container .box .fileload .file-img .image p {
+  padding-top: 15px;
+  font-weight: 700;
+}
+.container-box .container .box .fileload .file-img .image p a {
+  color: #3cadf7;
+}
+.container-box .container .box .fileload .xgpasd p {
+  padding: 15px 30px;
+  font-size: 16px;
+  line-height: 26px;
+  color: #333;
+  background: rgba(0, 0, 0, 0.02);
+  margin: 0;
+  border-bottom: 1px solid #e7e8e9;
+}
+.container-box .container .box .fileload .xgpasd p:hover {
+  cursor: pointer;
+  background-color: #4285f4;
+  transition: all 0.5s;
+  color: white;
+}
+.container-box .container .box .textdrtion {
+  height: 460px;
+  padding: 20px 25px;
+  background-color: white;
+}
+.container-box .container .box .textdrtion .title {
+  font-size: 22px;
+  font-weight: 700;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #dddddd;
+}
+.container-box .container .box .textdrtion .nickname {
+  padding: 30px 0;
+}
+.container-box .container .box .textdrtion .nickname p {
+  font-weight: 700;
+  margin: 15px 0 10px 0;
+  font-size: 15px;
+}
+.container-box .container .box .textdrtion .nickname .username {
+  width: 100%;
+  padding: 8px 10px;
+  outline: none;
+  border: 1px solid #ccc;
+}
+.container-box .container .box .textdrtion .nickname .description {
+  padding: 5px 10px;
+  width: 100%;
+  height: 100px;
+}
+.container-box .container .box .textdrtion .nickname #btn {
+  outline: none;
+  border: 0;
+  background-color: #3ca5f6;
+  padding: 8px 20px;
+  color: white;
+}
+.container-box .container .box .textdrtion .nickname #btn:hover {
+  background-color: #4285f4;
+  transition: all 0.5s;
+}

@@ -13,7 +13,7 @@
     <script src="../public/js/template-web.js"></script>
     <script src="../public/js/JQuery.js"></script>
     <script src="../public/js/bootstrap.min.js"></script>
-    
+    <script src="../assets/js/category.js"></script>
     
 </head>
 <body>
@@ -39,18 +39,27 @@
                 {{/each}}
                 <span></span>
               </ul> 
-              <div class="users hidden-sm">
-                <div class="userinfo">
-                  <div class="loginsign">
-                    <span><a href="http://localhost/web/login">登录</a></span>
-                    <span><a href="http://localhost/web/sign">注册</a></span>
+              <div class="users hidden-sm" >
+                <div class="userhover">
+                  <div class="userinfo">
+                    <div class="loginsign">
+                      <span><a href="http://localhost/web/login" class="loginshide" style="color: white;">登录</a></span>
+                      <span><a href="http://localhost/web/sign" class="signshide" style="color: white;">注册</a></span>
+                    </div>
                   </div>
+                  <div class="downloads">
+                    <div>
+                        <div class="usermain"><a href="">个人中心</a></div>
+                        <div class="userset"><a href="">账号设置</a></div>
+                        <div class="unlogin"><a href="">退出登录</a></div>
+                    </div>
+                 </div>
                 </div>
                 <div>
-                    <a href="#" class="userbtn" >
-                        投稿
-                    </a>
-                </div>
+                  <a href="#" class="userbtn" >
+                      投稿
+                  </a>
+              </div>
               </div>
             </div>
           </div>
@@ -80,7 +89,7 @@
              </ul> 
              <div class="users hidden-sm">
                <div class="userinfo">
-                
+        
                </div>
                <div>
                    <a href="#" class="userbtn" >
@@ -119,12 +128,8 @@
                {{/each}}
               </ul>
               <nav aria-label="Page navigation" class="navigation">
-                <div style="display: none;" class="hiddenDiv"></div>
                 <ul class="pagination">
                 
-
-
-
                 </ul>
               </nav>
             </div>
@@ -188,10 +193,14 @@
 </script>
 <!-- 用户头像姓名 -->
 <script type="text/template" id="userinfo">
-      <a href="http://localhost/usermsg/<%=data[0].id%>" class="usersId ">
-        <img src="<%=data[0].img%>" alt="">
+      <a href="http://localhost/usermain/<%=data[0].id%>" class="usersId ">
+        <% if(data[0].img){%>
+          <img src="http://localhost/<%=data[0].img%>" alt="" class="uploadimg">
+        <%} else{%>
+          <img src="../public/image/ico1.png" alt="">
+        <%}%>
         <span><%=data[0].username%></span>
-        <em class="icon-user"></em>
+        <em class="icon-ctrl"></em>
       </a>
 </script>
  <script src="../assets/js/public.js"></script>

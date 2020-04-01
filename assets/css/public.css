@@ -8,6 +8,9 @@
   #bs-example-navbar-collapse-1 > ul > li > a {
     border: 0;
   }
+  #bs-example-navbar-collapse-1 > div > div.userhover > div.downloads {
+    display: none !important;
+  }
 }
 @media (min-width: 768px) and (max-width: 990px) {
   #bs-example-navbar-collapse-1 > ul > li > a {
@@ -71,6 +74,7 @@
   width: 22px;
 }
 .navbar-default .container .users {
+  position: relative;
   padding-left: 30px;
   display: flex;
   justify-content: center;
@@ -88,10 +92,48 @@
   color: #4285f4;
 }
 .navbar-default .container .users .usersId {
-  padding: 10px 0;
+  padding-top: 12px;
+  position: relative;
+  color: #aaa;
 }
 .navbar-default .container .users .usersId img {
   height: 32px;
+}
+.navbar-default .container .users .usersId em {
+  position: absolute;
+  top: 50%;
+  right: -15px;
+}
+.navbar-default .container .users .uploadimg {
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+}
+.navbar-default .container .users .downloads {
+  display: none;
+  left: 50%;
+  margin-left: -55px;
+  top: 48px;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+.navbar-default .container .users .downloads div {
+  padding: 10px 0px;
+}
+.navbar-default .container .users .downloads div a {
+  color: #aaa;
+}
+.navbar-default .container .users .downloads div div {
+  padding: 10px 30px;
+}
+.navbar-default .container .users .downloads div div:hover {
+  width: 100%;
+  background-color: #4285f4;
+  transition: all 0.5s;
+}
+.navbar-default .container .users .downloads div div:hover a {
+  color: white;
 }
 .navbar-default .container .users .userbtn {
   color: white;
@@ -99,7 +141,7 @@
   padding: 5px 10px;
   border-radius: 10%;
   font-size: 13px;
-  margin: 10px 0 0 10px;
+  margin: 10px 0 0 18px;
 }
 .navbar-default .container .users .userbtn:hover {
   background-color: #4285f4;

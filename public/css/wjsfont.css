@@ -49,3 +49,6 @@
 .icon-share:before {
   content: "\ea7d";
 }
+.icon-camera:before{
+  content:"\e90f"
+}
