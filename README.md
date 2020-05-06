@@ -1,9 +1,8 @@
-# ajax-art-template-jQuery web project
+# ajax-art-template-jQuery
 
 #### 介绍
-web端网站,使用art-template进行服务端渲染 
-后端管理系统请访问 https://github.com/githubchx12380/vue-express-mysql-admin-and-api.git 
-技术栈为express + mysql + vue + element
+后端管理 https://github.com/githubchx12380/vue-express-mysql-admin-and-api.git 
+express + mysql + vue + element
 
 
 
